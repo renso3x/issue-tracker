@@ -9,8 +9,8 @@ import SimpleMDE from "react-simplemde-editor";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createIssueSchema } from "../../api/issues/createIssueSchema";
 import { z } from "zod";
-import ErrorMessage from "../../components/ErrorMessage";
 import Spinner from "../../components/Spinner";
+import { ErrorMessage } from "../../components";
 
 type IssueForm = z.infer<typeof createIssueSchema>;
 
