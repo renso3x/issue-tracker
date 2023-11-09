@@ -1,5 +1,5 @@
 "use client";
-import { Button, Callout, Text, TextField } from "@radix-ui/themes";
+import { Box, Button, Callout, Text, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
@@ -39,7 +39,7 @@ const NewIssuePage = () => {
   });
 
   return (
-    <div className="max-w-xl ">
+    <Box className="max-w-xl ">
       {error && (
         <Callout.Root color="red" className="mb-5">
           <Callout.Text>{error}</Callout.Text>
@@ -62,7 +62,7 @@ const NewIssuePage = () => {
           Submit New Issue {isSubmitting && <Spinner />}
         </Button>
       </form>
-    </div>
+    </Box>
   );
 };
 
