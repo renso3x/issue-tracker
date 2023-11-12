@@ -7,13 +7,13 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import SimpleMDE from "react-simplemde-editor";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createIssueSchema } from "../../api/issues/createIssueSchema";
+import { issueSchema } from "../../api/issues/createIssueSchema";
 import { z } from "zod";
 import Spinner from "../../components/Spinner";
 import { ErrorMessage } from "../../components";
 import { Issue } from "@prisma/client";
 
-type IssueFormData = z.infer<typeof createIssueSchema>;
+type IssueFormData = z.infer<typeof issueSchema>;
 
 interface Props {
   issue?: Issue
