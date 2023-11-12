@@ -16,7 +16,7 @@ import { Issue } from "@prisma/client";
 type IssueFormData = z.infer<typeof issueSchema>;
 
 interface Props {
-  issue?: Issue
+  issue?: Issue;
 }
 
 const IssueForm = ({ issue }: Props) => {
@@ -27,7 +27,7 @@ const IssueForm = ({ issue }: Props) => {
     handleSubmit,
     formState: { errors },
   } = useForm<IssueFormData>({
-    resolver: zodResolver(createIssueSchema),
+    resolver: zodResolver(issueSchema),
   });
   const [error, setError] = useState("");
   const [isSubmitting, setSubmitting] = useState(false);
@@ -35,7 +35,11 @@ const IssueForm = ({ issue }: Props) => {
   const onSubmit = handleSubmit(async (data: IssueFormData) => {
     try {
       setSubmitting(true);
-      await axios.post("/api/issues", data);
+      if (issue) {
+        await axios.patch("/api/issues/" + issue.id, data);
+      } else {
+        await axios.post("/api/issues", data);
+      }
       router.push("/issues");
     } catch (error) {
       setSubmitting(false);
@@ -69,7 +73,8 @@ const IssueForm = ({ issue }: Props) => {
         />
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
         <Button disabled={isSubmitting}>
-          Submit New Issue {isSubmitting && <Spinner />}
+          {issue ? "Update Issue" : "Submit New Issue"}{" "}
+          {isSubmitting && <Spinner />}
         </Button>
       </form>
     </Box>
