@@ -68,7 +68,6 @@ const AuthStatus = () => {
 
   return (
     <Box>
-      
       <DropdownMenu.Root>
         <DropdownMenu.Trigger>
           <Avatar
