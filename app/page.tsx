@@ -1,6 +1,7 @@
+import LatestIssue from "./LatestIssue";
 
 export default function Home() {
   return (
-   <h1>Dashboard</h1>
+    <LatestIssue />
   )
 }
